@@ -23,7 +23,11 @@
     // 🧠 Example of usage:
     // buildPeter() // should return { firstName: "Peter", lastName: "Pan", age: 12 }
     function buildPeter() {
-
+      return {
+        firstName: "Peter",
+        lastName: "Pan",
+        age: 12
+      }
     }
 
     // 👉 CHALLENGE 2
@@ -31,7 +35,11 @@
     // 🧠 Example of usage:
     // buildUser("John", "Smith", 30) // should return { firstName: "John", lastName: "Smith", age: 30 }
     function buildUser(firstName, lastName, age) {
-
+      return {
+        firstName,
+        lastName,
+        age
+      }
     }
 
     // 👉 CHALLENGE 3
@@ -42,8 +50,14 @@
     // 🧠 Examples of usage:
     // deletePrice({ item: "Tesla Model 3", price: 40000 }) // should return { item: "Tesla Model 3" }
     // deletePrice({ item: "Kobo Libra 2" }) // should return { item: "Kobo Libra 2", priceless: true }
-    function deletePrice() {
+    function deletePrice(anObject) {
+      if (anObject.price !== undefined) {
+        delete anObject.price;
+      } else if (anObject.price === undefined) {
+        anObject.priceless = true;
+      }
 
+      return anObject;
     }
 
     // 👉 CHALLENGE 4
@@ -53,7 +67,11 @@
     // evenList(['a']) // should return false
     // evenList(['a', 'b']) // should return true
     function evenList(arr) {
+      if (arr.length % 2 === 0) {
+        return true;
+      }
 
+      return false;
     }
 
     // 👉 CHALLENGE 5
@@ -62,8 +80,12 @@
     // 🧠 Examples of usage:
     // firstOrLast(['a', 'b'], true) // should return 'a'
     // firstOrLast(['a', 'b'], false) // should return 'b'
-    function firstOrLast() {
+    function firstOrLast(anArray, aBoolean) {
+      if (aBoolean) {
+        return anArray[0];
+      }
 
+      return anArray.at(-1);
     }
 
     // 👉 CHALLENGE 6
@@ -72,8 +94,9 @@
     // 🧠 Examples of usage:
     // pushElement([], 1) // should return [1]
     // pushElement(['a', 'b'], 'c') // should return ['a', 'b', 'c']
-    function pushElement() {
-
+    function pushElement(anArray, anyValue) {
+      anArray.push(anyValue);
+      return anArray;
     }
 
     // 👉 CHALLENGE 7
@@ -88,8 +111,19 @@
     // 🧠 At each iteration of the loop, if the current character is not "x", then add it to the end of the result array.
     // 🧠 You can merge the result array back into a string by using join. Example: ["f", "o", "o"].join("") yields "foo"
     // 🧠 Do not forget to return your rejoined string!
-    function stripX() {
+    function stripX(aString) {
+      let stringArray = aString.split('')
+      let emptyResultArray = []
 
+      for (let i = 0; i < stringArray.length; i++) {
+        if (stringArray[i] !== "x") {
+          emptyResultArray.push(stringArray[i])
+        }
+      }
+
+      let newString = emptyResultArray.join('');
+
+      return newString;
     }
 
     // 👉 CHALLENGE 8
@@ -101,8 +135,18 @@
     // ❗ Important Notes:
     // 🧠 Try to solve this problem without looking at how you solved the previous one.
     // 🧠 If you need to look, do not copy & paste code. Take a peek and then work from memory!
-    function stripChar() {
+    function stripChar(aString, aCharacter) {
+      let stringArray = aString.split('');
+      let emptyArray = [];
 
+      for (let i = 0; i < aString.length; i++) {
+        if (aString[i] !== aCharacter) {
+          emptyArray.push(aString[i]);
+        }
+      }
+
+      let returnedString = emptyArray.join('');
+      return returnedString;
     }
 
     // 👉 CHALLENGE 9
@@ -114,8 +158,17 @@
     // getProps({ lastName: "Smith", age: 35 }) // should return ["lastName"]
     // getProps({ firstName: "Jane", married: false }) // should return ["firstName"]
     // getProps({ name: "Bamby", favFood: "flowers" }) // should return ["name", "favFood"]
-    function getProps() {
+    function getProps(anObject) {
 
+      let arrayOfProps = [];
+
+      for (let prop in anObject) {
+        if (prop !== "age" && prop !== "married") {
+          arrayOfProps.push(prop);
+        }
+      }
+      // return array of prop names
+      return arrayOfProps;
     }
 
     // 🧪 TESTS, do not work below this line
